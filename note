@@ -1,0 +1,30 @@
+git 连接linux
+ssh username@host_ip_or_name
+linux
+ifconfig 获取本地ip
+windows
+ipconfig
+
+linux ubuntu
+ifconfig 未安装
+解决方法：
+sudo apt-get install net-tools
+
+root账户密码123456
+
+
+github ssh 配置
+一、设置邮箱&对应的提交代码的账户
+	git config --global user.name "自定义用户名" 
+	git config --global user.email "邮箱"
+二、生产ssh密钥
+	ssh-keygen -t rsa -C "your_email@youremail.com" [enter]
+	（输入命令点击回车时，会出现一个密钥文件生产的路径，点击回车使用默认路径）
+	默认设置 点击回车 使得git push、git pull 无需密码
+三、配置公钥到github上
+	点击头像-->出现下拉框-->点击settings
+	在左边 点击SSH and GPG keys
+	new ssh key(title 输入任意名称，内容为生产密钥文件中的id_rsa.pub的内容)
+	解析：github ssh是检验 公钥与本地是否一致，每次执行生产密钥命令都会重新生产一个id_rsa.pub,需要重新在github上配置或者将github上的密钥在本地重新配置一遍
+
+
