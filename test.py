@@ -23,6 +23,7 @@ if __name__ == '__main__':
     print "hello"
     num = '498486281838'
     url = getComcode('498486281838')
+    print url
     response = urllib.urlopen(url)
     resCompCode = response.read()
     resClass = json.loads(resCompCode)
@@ -37,3 +38,5 @@ if __name__ == '__main__':
     for item in lis:
         print item['context'] + '; time:' + item['ftime']
     print resClass
+
+
