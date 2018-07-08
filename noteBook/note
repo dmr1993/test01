@@ -1,0 +1,91 @@
+git 连接linux
+ssh username@host_ip_or_name
+linux
+ifconfig 获取本地ip
+windows
+ipconfig
+
+linux ubuntu
+ifconfig 未安装
+解决方法：
+sudo apt-get install net-tools
+
+root账户密码123456
+
+
+github ssh 配置
+一、设置邮箱&对应的提交代码的账户
+	git config --global user.name "自定义用户名"
+	git config --global user.email "邮箱"
+二、生产ssh密钥
+	ssh-keygen -t rsa -C "your_email@youremail.com" [enter]
+	（输入命令点击回车时，会出现一个密钥文件生产的路径，点击回车使用默认路径）
+	默认设置 点击回车 使得git push、git pull 无需密码
+三、配置公钥到github上
+	点击头像-->出现下拉框-->点击settings
+	在左边 点击SSH and GPG keys
+	new ssh key(title 输入任意名称，内容为生产密钥文件中的id_rsa.pub的内容)
+	解析：github ssh是检验 公钥与本地是否一致，每次执行生产密钥命令都会重新生产一个id_rsa.pub,需要重新在github上配置或者将github上的密钥在本地重新配置一遍
+四、测试配置情况
+	ssh -T git@github.com
+	如果配置成功，则会显示：
+	Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+
+python 出现中文报错：
+    在顶部输入编码方式
+    #coding=utf-8
+python 随机数
+    import random
+    产生随机值的模块
+    random.random()            #获取一个随机的浮点值;
+    help(random.random)        #查看随机范围：0-1;
+    random.uniform(1,10)       #仍然取的是浮点数，只是相比random增加了一个区间;
+    random.randint(1,7)        #随机1-7
+    random.randrange(1,10)     #顾头不顾尾
+    random.choice("")          #可以传入一个序列
+    random.sample("序列",长度)  #在序列里随机取两位处理；序列可以使字符串，列表;
+                                从序列（字符串）中随机挑出 长度 个字符组成数组
+
+python 调用接口
+    import urllib,urllib2
+    url='http://192.168.199.1:8000/mainsugar/loginGET/'
+
+   # 对象转get方法的后缀内容
+    textmod ={'user':'admin','password':'admin'}
+    textmod = urllib.urlencode(textmod)
+    print(textmod)
+    #输出内容:password=admin&user=admin
+
+    #如下两个效果相同
+    req = urllib2.urlopen(url = '%s%s%s' % (url,'?',textmod))
+    res = urllib.urlopen(url)
+    #读取获得内容，以json 字符串方式
+    res = res.read()
+############################################
+    url = 'http://www.douban.com'
+info = {'name' : 'Michael Foord',
+          'location' : 'Northampton'}
+data = urllib.urlencode(info)  #info 需要被编码为urllib2能理解的格式，这里用到的是urllib
+req = urllib2.Request(url, data)
+response = urllib2.urlopen(req)
+the_page = response.read()
+############################################
+
+python post 方式：
+    import json,urllib2
+    textmod={"jsonrpc": "2.0","method":"user.login","params":{"user":"admin","password":"zabbix"},"auth": None,"id":1}
+    textmod = json.dumps(textmod)
+    print(textmod)
+    #输出内容:{"params": {"password": "zabbix", "user": "admin"}, "jsonrpc": "2.0", "method": "user.login", "auth": null, "id": 1}
+    header_dict = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko',"Content-Type": "application/json"}
+    url='http://192.168.199.10/api_jsonrpc.php'
+    req = urllib2.Request(url=url,data=textmod,headers=header_dict)
+    res = urllib2.urlopen(req)
+    res = res.read()
+    print(res)
+    #输出内容:{"jsonrpc":"2.0","result":"2c42e987811c90e0491f45904a67065d","id":1}
+
+
+
+
+
